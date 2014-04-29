@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ms.doodle.app" >
-<<<<<<< HEAD
     <uses-permission android:name="android.Manifest.permission.WRITE_EXTERNAL_STORAGE"/>
-=======
-
-    <uses-permission android:name="android.Manifest.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
->>>>>>> 2642519824c6b11dd5324f6c3fc9c3e02fca86c0
 
     <application
         android:allowBackup="true"
@@ -30,22 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity android:name="com.ms.doodle.app.EditPicture"
-            android:label="@string/editPicture_title"
-            >
-
-            </activity>
-=======
-        <activity
-            android:name="com.ms.doodle.app.EditImageActivity"
-            android:label="@string/title_activity_edit_image" >
-        </activity>
         <activity
             android:name="com.ms.doodle.app.EditPicture"
             android:label="@string/title_activity_edit_image" >
         </activity>
->>>>>>> 2642519824c6b11dd5324f6c3fc9c3e02fca86c0
     </application>
 
 </manifest>
