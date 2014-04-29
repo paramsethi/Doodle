@@ -20,8 +20,8 @@ public class EditImageActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_image);
-        setContentView(R.layout.activity_edit_image);
-        imageView = (ImageView) findViewById(R.id.imageView);
+
+        imageView = (ImageView) findViewById(R.id.editImageView);
         try {
             Uri imageUri = (Uri) this.getIntent().getParcelableExtra("data");
             final InputStream imageStream = getContentResolver().openInputStream(imageUri);
