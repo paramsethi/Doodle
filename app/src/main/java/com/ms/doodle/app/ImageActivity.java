@@ -1,22 +1,13 @@
 package com.ms.doodle.app;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.Locale;
-
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 public class ImageActivity extends ActionBarActivity {
 
@@ -54,10 +47,10 @@ public class ImageActivity extends ActionBarActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-       // mViewPager = (ViewPager) findViewById(R.id.pager);
+        // mViewPager = (ViewPager) findViewById(R.id.pager);
         //mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        imageView = (ImageView)findViewById(R.id.imageView);
+        imageView = (ImageView) findViewById(R.id.imageView);
 
         Button pickImage = (Button) findViewById(R.id.btn_pick);
         pickImage.setOnClickListener(new View.OnClickListener() {
@@ -91,22 +84,23 @@ public class ImageActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
 
-        switch(requestCode) {
+        switch (requestCode) {
             case SELECT_PHOTO:
-                if(resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     try {
                         final Uri imageUri = imageReturnedIntent.getData();
                        /* final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                         imageView.setImageBitmap(selectedImage);*/
-                        Intent i = new Intent (ImageActivity.this, EditImageActivity.class);
-                        i.putExtra("data",imageUri);
+                        Intent i = new Intent(ImageActivity.this, EditImageActivity.class);
+                        i.putExtra("data", imageUri);
                         startActivity(i);
-                    }catch(Exception exp){
+                    } catch (Exception exp) {
                         exp.printStackTrace();
                     }
 
@@ -178,7 +172,7 @@ public class ImageActivity extends ActionBarActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_image, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));

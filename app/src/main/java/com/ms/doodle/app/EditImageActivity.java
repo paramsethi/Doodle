@@ -1,27 +1,23 @@
 package com.ms.doodle.app;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ImageView;
-
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.UUID;
 
 
@@ -32,25 +28,27 @@ public class EditImageActivity extends ActionBarActivity {
     private ImageButton paintButton, drawButton, eraseButton, saveButton;
     private float smallBrush, mediumBrush, largeBrush;
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_image);
 
         imageView = (ImageView) findViewById(R.id.editImageView);
-
+        InputStream imageStream = null;
         try {
             Uri imageUri = (Uri) this.getIntent().getParcelableExtra("data");
-            final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-            final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-            imageView.setImageBitmap(selectedImage);
+            imageStream = getContentResolver().openInputStream(imageUri);
+            //final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+            //imageView.setImageBitmap(selectedImage);
         } catch (FileNotFoundException fex) {
             fex.printStackTrace();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
         drawView = (DrawingView) findViewById(R.id.drawing);
+
         LinearLayout paintLayout = (LinearLayout) findViewById(R.id.colors1);
 
         paintButton = (ImageButton) paintLayout.getChildAt(0);
@@ -60,20 +58,22 @@ public class EditImageActivity extends ActionBarActivity {
         mediumBrush = getResources().getInteger(R.integer.medium_size);
         largeBrush = getResources().getInteger(R.integer.large_size);
 
-        drawButton = (ImageButton)findViewById(R.id.brush_btn);
-       // drawButton.setOnClickListener(this);
+        drawButton = (ImageButton) findViewById(R.id.brush_btn);
+        // drawButton.setOnClickListener(this);
 
         drawView.setBrushSize(mediumBrush);
+        if (imageStream != null) {
+            drawView.animate();
+            drawView.setBackground(Drawable.createFromStream(imageStream, "myImg"));
+        }
 
         // save button
         saveButton = (ImageButton) findViewById(R.id.save_btn);
-       // saveButton.setOnClickListener(this);
+        // saveButton.setOnClickListener(this);
     }
 
-    public void onClick(View view)
-    {
-        switch(view.getId())
-        {
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.brush_btn:
                 onClickForBrushButton();
                 break;
@@ -83,27 +83,22 @@ public class EditImageActivity extends ActionBarActivity {
         }
     }
 
-    private void onClickForSaveButton()
-    {
+    private void onClickForSaveButton() {
         drawView.setDrawingCacheEnabled(true);
-        String imgSaved = MediaStore.Images.Media.insertImage(getContentResolver(), drawView.getDrawingCache(), UUID.randomUUID().toString()+".png", "drawing");
+        String imgSaved = MediaStore.Images.Media.insertImage(getContentResolver(), drawView.getDrawingCache(), UUID.randomUUID().toString() + ".png", "drawing");
         Toast toast;
-        if (imgSaved != null)
-        {
-            toast= Toast.makeText(getApplicationContext(), "Image Saved to Gallery!", Toast.LENGTH_SHORT);
+        if (imgSaved != null) {
+            toast = Toast.makeText(getApplicationContext(), "Image Saved to Gallery!", Toast.LENGTH_SHORT);
             toast.show();
             // Navigate to Home Screen.
-        }
-        else
-        {
+        } else {
             toast = Toast.makeText(getApplicationContext(), "Sorry, Image could not be saved", Toast.LENGTH_SHORT);
             toast.show();
         }
         drawView.destroyDrawingCache();
     }
 
-    private void onClickForBrushButton()
-    {
+    private void onClickForBrushButton() {
         // Create a dialog of different brush sizes.
         final Dialog brushDialog = new Dialog(this);
         brushDialog.setTitle("Brush sizes:");
@@ -167,10 +162,8 @@ public class EditImageActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void paintClicked(View view)
-    {
-        if (view!=paintButton)
-        {
+    public void paintClicked(View view) {
+        if (view != paintButton) {
             // Get rid of the erase mode.
             drawView.setEraseMode(false);
 
@@ -178,7 +171,7 @@ public class EditImageActivity extends ActionBarActivity {
             drawView.setBrushSize(drawView.getLastBrushSize());
 
             // Set current color according to the button user clicked on.
-            ImageButton newPaintButton = (ImageButton)view;
+            ImageButton newPaintButton = (ImageButton) view;
             String color = view.getTag().toString();
             drawView.setColor(color);
 
@@ -189,7 +182,7 @@ public class EditImageActivity extends ActionBarActivity {
             paintButton.setImageDrawable((getResources().getDrawable(R.drawable.paint)));
 
             // Save the current button selection
-            paintButton=(ImageButton)view;
+            paintButton = (ImageButton) view;
         }
     }
 }
