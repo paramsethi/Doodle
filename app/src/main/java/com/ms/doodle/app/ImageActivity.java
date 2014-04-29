@@ -100,11 +100,15 @@ public class ImageActivity extends ActionBarActivity {
                 if(resultCode == RESULT_OK){
                     try {
                         final Uri imageUri = imageReturnedIntent.getData();
-                        final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                       /* final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                        imageView.setImageBitmap(selectedImage);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
+                        imageView.setImageBitmap(selectedImage);*/
+                        //Intent i = new Intent (ImageActivity.this, EditPicture.class);
+                        Intent i = new Intent (ImageActivity.this, EditImageActivity.class);
+                        i.putExtra("data",imageUri);
+                        startActivity(i);
+                    }catch(Exception exp){
+                        exp.printStackTrace();
                     }
 
                 }
@@ -143,8 +147,6 @@ public class ImageActivity extends ActionBarActivity {
                     return getString(R.string.title_activity_image).toUpperCase(l);
                 case 1:
                     return getString(R.string.title_activity_image_picker).toUpperCase(l);
-                case 2:
-                    return getString(R.string.title_activity_image_picker_layout).toUpperCase(l);
             }
             return null;
         }
