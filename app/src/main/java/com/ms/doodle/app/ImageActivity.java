@@ -103,7 +103,6 @@ public class ImageActivity extends ActionBarActivity {
                        /* final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                         imageView.setImageBitmap(selectedImage);*/
-                        //Intent i = new Intent (ImageActivity.this, EditPicture.class);
                         Intent i = new Intent (ImageActivity.this, EditImageActivity.class);
                         i.putExtra("data",imageUri);
                         startActivity(i);

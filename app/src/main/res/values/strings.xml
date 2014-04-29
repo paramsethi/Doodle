@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">Doodle</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_image_picker">ImagePickerActivity</string>
     <string name="title_activity_image">Do_Odle</string>
@@ -18,5 +17,5 @@
     <string name="small">Small</string>
     <string name="medium">Medium</string>
     <string name="large">Large</string>
-    
+
 </resources>

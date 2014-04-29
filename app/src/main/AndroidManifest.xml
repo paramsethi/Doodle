@@ -21,13 +21,15 @@
             android:label="@string/title_activity_image" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ms.doodle.app.EditPicture"
+            android:name="com.ms.doodle.app.EditImageActivity"
             android:label="@string/title_activity_edit_image" >
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
