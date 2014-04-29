@@ -25,7 +25,7 @@ import android.widget.Toast;
 import java.util.UUID;
 
 
-public class EditImageActivity extends ActionBarActivity {
+public class EditImageActivity extends ActionBarActivity implements OnClickListener{
     private ImageView imageView;
 
     private DrawingView drawView;
@@ -61,13 +61,13 @@ public class EditImageActivity extends ActionBarActivity {
         largeBrush = getResources().getInteger(R.integer.large_size);
 
         drawButton = (ImageButton)findViewById(R.id.brush_btn);
-        drawButton.setOnClickListener((OnClickListener)this);
+        drawButton.setOnClickListener(this);
 
         drawView.setBrushSize(mediumBrush);
 
         // save button
         saveButton = (ImageButton) findViewById(R.id.save_btn);
-        saveButton.setOnClickListener((OnClickListener)this);
+        saveButton.setOnClickListener(this);
     }
 
     public void onClick(View view)
