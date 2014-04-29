@@ -2,9 +2,11 @@ package com.ms.doodle.app;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -16,7 +18,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.UUID;
 
@@ -85,7 +89,7 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
 
     private void onClickForSaveButton() {
         drawView.setDrawingCacheEnabled(true);
-        String imgSaved = MediaStore.Images.Media.insertImage(getContentResolver(), drawView.getDrawingCache(), UUID.randomUUID().toString() + ".png", "drawing");
+       /* String imgSaved = MediaStore.Images.Media.insertImage(getContentResolver(), drawView.getDrawingCache(), UUID.randomUUID().toString() + ".png", "drawing");
         Toast toast;
         if (imgSaved != null) {
             toast = Toast.makeText(getApplicationContext(), "Image Saved to Gallery!", Toast.LENGTH_SHORT);
@@ -95,7 +99,26 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
             toast = Toast.makeText(getApplicationContext(), "Sorry, Image could not be saved", Toast.LENGTH_SHORT);
             toast.show();
         }
-        drawView.destroyDrawingCache();
+        drawView.destroyDrawingCache();*/
+
+        Toast toast;
+        Bitmap bitmap = drawView.getDrawingCache();
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+        File file = new File(path+"image.png");
+        FileOutputStream ostream;
+        try {
+            file.createNewFile();
+            ostream = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, ostream);
+            ostream.flush();
+            ostream.close();
+            Toast.makeText(getApplicationContext(), "Image saved", 5000).show();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Sorry, error", 5000).show();
+        }
     }
 
     private void onClickForBrushButton() {
