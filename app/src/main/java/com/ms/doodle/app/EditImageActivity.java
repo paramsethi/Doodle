@@ -58,8 +58,8 @@ public class EditImageActivity extends ActionBarActivity {
         mediumBrush = getResources().getInteger(R.integer.medium_size);
         largeBrush = getResources().getInteger(R.integer.large_size);
 
-        drawButton = (ImageButton) findViewById(R.id.brush_btn);
-        // drawButton.setOnClickListener(this);
+        drawButton = (ImageButton)findViewById(R.id.brush_btn);
+        drawButton.setOnClickListener((OnClickListener)this);
 
         drawView.setBrushSize(mediumBrush);
         if (imageStream != null) {
@@ -69,7 +69,7 @@ public class EditImageActivity extends ActionBarActivity {
 
         // save button
         saveButton = (ImageButton) findViewById(R.id.save_btn);
-        // saveButton.setOnClickListener(this);
+        saveButton.setOnClickListener((OnClickListener)this);
     }
 
     public void onClick(View view) {
