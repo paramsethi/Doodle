@@ -60,13 +60,13 @@ public class EditImageActivity extends ActionBarActivity {
         largeBrush = getResources().getInteger(R.integer.large_size);
 
         drawButton = (ImageButton)findViewById(R.id.brush_btn);
-       // drawButton.setOnClickListener(this);
+        drawButton.setOnClickListener((OnClickListener)this);
 
         drawView.setBrushSize(mediumBrush);
 
         // save button
         saveButton = (ImageButton) findViewById(R.id.save_btn);
-       // saveButton.setOnClickListener(this);
+        saveButton.setOnClickListener((OnClickListener)this);
     }
 
     public void onClick(View view)
