@@ -7,6 +7,7 @@
     <string name="title_activity_image">Do_Odle</string>
     <string name="OtherActivity">Other Activity</string>
     <string name="change_image">Go to Gallery</string>
+    <string name="click_image">Click Image</string>
     <string name="title_activity_edit_image">EditImageActivity</string>
 
     <string name='editPicture_title'>Doodle on your image</string>

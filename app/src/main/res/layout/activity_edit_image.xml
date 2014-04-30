@@ -26,16 +26,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:contentDescription="@string/brush"
-                android:src="@drawable/brush"
-                />
+                android:src="@drawable/brush" />
 
             <ImageButton
                 android:id="@+id/save_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:contentDescription="@string/save"
-                android:src="@drawable/save"
-                />
+                android:src="@drawable/save" />
 
         </LinearLayout>
 
@@ -45,8 +43,7 @@
             android:id="@+id/editImageView"
             android:layout_gravity="center_horizontal"
             android:maxHeight="200dp"
-            android:src="@drawable/ic_launcher"
-            />
+            android:src="@drawable/ic_launcher" />
 
         <com.ms.doodle.app.DrawingView
             android:id="@+id/drawing"
@@ -57,15 +54,13 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="3dp"
             android:layout_weight="1"
-            android:background="#FFFFFFFF"
-            />
+            android:background="#FFFFFFFF" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
             <!-- Top Row -->
             <LinearLayout
                 android:id="@+id/colors1"
@@ -81,8 +76,7 @@
                     android:contentDescription="@string/paint"
                     android:onClick="paintClicked"
                     android:src="@drawable/paint"
-                    android:tag="#FF660000"
-                    />
+                    android:tag="#FF660000" />
 
                 <ImageButton
                     android:layout_width="@dimen/large_brush"
@@ -92,8 +86,7 @@
                     android:contentDescription="@string/paint"
                     android:onClick="paintClicked"
                     android:src="@drawable/paint"
-                    android:tag="#FFFF0000"
-                    />
+                    android:tag="#FFFF0000" />
 
                 <ImageButton
                     android:layout_width="@dimen/large_brush"
@@ -103,8 +96,7 @@
                     android:contentDescription="@string/paint"
                     android:onClick="paintClicked"
                     android:src="@drawable/paint"
-                    android:tag="#FFFF6600"
-                    />
+                    android:tag="#FFFF6600" />
 
                 <ImageButton
                     android:layout_width="@dimen/large_brush"
@@ -114,8 +106,7 @@
                     android:contentDescription="@string/paint"
                     android:onClick="paintClicked"
                     android:src="@drawable/paint"
-                    android:tag="#FFFFCC00"
-                    />
+                    android:tag="#FFFFCC00" />
 
                 <ImageButton
                     android:layout_width="@dimen/large_brush"
@@ -125,8 +116,7 @@
                     android:contentDescription="@string/paint"
                     android:onClick="paintClicked"
                     android:src="@drawable/paint"
-                    android:tag="#FF009900"
-                    />
+                    android:tag="#FF009900" />
 
 
                 <ImageButton
@@ -137,8 +127,7 @@
                     android:contentDescription="@string/paint"
                     android:onClick="paintClicked"
                     android:src="@drawable/paint"
-                    android:tag="#FF009900"
-                    />
+                    android:tag="#FF009900" />
 
             </LinearLayout>
 
@@ -157,8 +146,7 @@
                     android:contentDescription="@string/paint"
                     android:onClick="paintClicked"
                     android:src="@drawable/paint"
-                    android:tag="#FF0000FF"
-                    />
+                    android:tag="#FF0000FF" />
 
                 <ImageButton
                     android:layout_width="@dimen/large_brush"
@@ -168,8 +156,7 @@
                     android:contentDescription="@string/paint"
                     android:onClick="paintClicked"
                     android:src="@drawable/paint"
-                    android:tag="#FF990099"
-                    />
+                    android:tag="#FF990099" />
 
                 <ImageButton
                     android:layout_width="@dimen/large_brush"
@@ -179,8 +166,7 @@
                     android:contentDescription="@string/paint"
                     android:onClick="paintClicked"
                     android:src="@drawable/paint"
-                    android:tag="#FFFF6666"
-                    />
+                    android:tag="#FFFF6666" />
 
                 <ImageButton
                     android:layout_width="@dimen/large_brush"
@@ -190,8 +176,7 @@
                     android:contentDescription="@string/paint"
                     android:onClick="paintClicked"
                     android:src="@drawable/paint"
-                    android:tag="#FFFFFFFF"
-                    />
+                    android:tag="#FFFFFFFF" />
 
                 <ImageButton
                     android:layout_width="@dimen/large_brush"
@@ -201,8 +186,7 @@
                     android:contentDescription="@string/paint"
                     android:onClick="paintClicked"
                     android:src="@drawable/paint"
-                    android:tag="#FF787878"
-                    />
+                    android:tag="#FF787878" />
 
                 <ImageButton
                     android:layout_width="@dimen/large_brush"
@@ -212,8 +196,7 @@
                     android:contentDescription="@string/paint"
                     android:onClick="paintClicked"
                     android:src="@drawable/paint"
-                    android:tag="#FF000000"
-                    />
+                    android:tag="#FF000000" />
 
             </LinearLayout>
 
