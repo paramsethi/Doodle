@@ -3,6 +3,8 @@ package com.ms.doodle.app;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -17,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.Locale;
 
 public class ImageActivity extends ActionBarActivity {
@@ -31,6 +34,7 @@ public class ImageActivity extends ActionBarActivity {
      */
     SectionsPagerAdapter mSectionsPagerAdapter;
     private final int SELECT_PHOTO = 1;
+    private final int CAPTURE_PHOTO = 0;
     private ImageView imageView;
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -46,12 +50,6 @@ public class ImageActivity extends ActionBarActivity {
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
-        // mViewPager = (ViewPager) findViewById(R.id.pager);
-        //mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        imageView = (ImageView) findViewById(R.id.imageView);
-
         Button pickImage = (Button) findViewById(R.id.btn_pick);
         pickImage.setOnClickListener(new View.OnClickListener() {
 
@@ -62,6 +60,18 @@ public class ImageActivity extends ActionBarActivity {
                 startActivityForResult(photoPickerIntent, SELECT_PHOTO);
             }
         });
+
+        Button clickImage = (Button) findViewById(R.id.btn_click);
+        clickImage.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent photoClickerIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                //photoClickerIntent.setType("image/*");
+                startActivityForResult(photoClickerIntent, CAPTURE_PHOTO);
+            }
+        });
+
     }
 
 
@@ -88,12 +98,12 @@ public class ImageActivity extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-
+        Uri imageUri;
         switch (requestCode) {
             case SELECT_PHOTO:
                 if (resultCode == RESULT_OK) {
                     try {
-                        final Uri imageUri = imageReturnedIntent.getData();
+                        imageUri = imageReturnedIntent.getData();
                        /* final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                         imageView.setImageBitmap(selectedImage);*/
@@ -104,6 +114,22 @@ public class ImageActivity extends ActionBarActivity {
                         exp.printStackTrace();
                     }
 
+                }
+                break;
+            case CAPTURE_PHOTO:
+                if (resultCode == RESULT_OK) {
+                    try {
+
+                        imageUri = imageReturnedIntent.getData();
+                       /* final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                        final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                        imageView.setImageBitmap(selectedImage);*/
+                        Intent i = new Intent(ImageActivity.this, EditImageActivity.class);
+                        i.putExtra("data", imageUri);
+                        startActivity(i);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
         }
     }

@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,10 +21,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.UUID;
 
 
-public class EditImageActivity extends ActionBarActivity implements OnClickListener{
+public class EditImageActivity extends ActionBarActivity implements OnClickListener {
     private ImageView imageView;
 
     private DrawingView drawView;
@@ -62,7 +60,7 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
         mediumBrush = getResources().getInteger(R.integer.medium_size);
         largeBrush = getResources().getInteger(R.integer.large_size);
 
-        drawButton = (ImageButton)findViewById(R.id.brush_btn);
+        drawButton = (ImageButton) findViewById(R.id.brush_btn);
         drawButton.setOnClickListener(this);
 
         drawView.setBrushSize(mediumBrush);
@@ -105,7 +103,7 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
         Toast toast;
         Bitmap bitmap = drawView.getDrawingCache();
         String path = Environment.getExternalStorageDirectory().getAbsolutePath();
-        File file = new File(path+"image.png");
+        File file = new File(path + "image.png");
         FileOutputStream ostream;
         try {
             file.createNewFile();
@@ -114,9 +112,7 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
             ostream.flush();
             ostream.close();
             Toast.makeText(getApplicationContext(), "Image saved", 5000).show();
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "Sorry, error" + e.toString(), 5000).show();
         }
