@@ -89,7 +89,8 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
 
     private void onClickForSaveButton() {
         drawView.setDrawingCacheEnabled(true);
-       /* String imgSaved = MediaStore.Images.Media.insertImage(getContentResolver(), drawView.getDrawingCache(), UUID.randomUUID().toString() + ".png", "drawing");
+    /*    Bitmap bitmap = drawView.getDrawingCache();
+        String imgSaved = MediaStore.Images.Media.insertImage(this.getBaseContext().getContentResolver(), bitmap, "temp" + ".png", "drawing");
         Toast toast;
         if (imgSaved != null) {
             toast = Toast.makeText(getApplicationContext(), "Image Saved to Gallery!", Toast.LENGTH_SHORT);
@@ -99,8 +100,8 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
             toast = Toast.makeText(getApplicationContext(), "Sorry, Image could not be saved", Toast.LENGTH_SHORT);
             toast.show();
         }
-        drawView.destroyDrawingCache();*/
-
+        drawView.destroyDrawingCache();
+*/
         Toast toast;
         Bitmap bitmap = drawView.getDrawingCache();
         String path = Environment.getExternalStorageDirectory().getAbsolutePath();
@@ -117,7 +118,7 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
         catch(Exception e)
         {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "Sorry, error", 5000).show();
+            Toast.makeText(getApplicationContext(), "Sorry, error" + e.toString(), 5000).show();
         }
     }
 

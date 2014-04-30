@@ -37,16 +37,15 @@
                 android:src="@drawable/save"
                 />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editImageView"
+                android:layout_gravity="center_horizontal"
+                android:maxHeight="200dp"
+                android:src="@drawable/ic_launcher"
+                />
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editImageView"
-            android:layout_gravity="center_horizontal"
-            android:maxHeight="200dp"
-            android:src="@drawable/ic_launcher"
-            />
 
         <com.ms.doodle.app.DrawingView
             android:id="@+id/drawing"
