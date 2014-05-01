@@ -1,10 +1,6 @@
 package com.ms.doodle.app;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,15 +10,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,17 +36,10 @@ public class ImageActivity extends ActionBarActivity {
     private final int SELECT_PHOTO = 1;
     private final int CAPTURE_PHOTO = 0;
     private ImageView imageView;
-
-    public Cursor cc = null;
-    public static Uri[] mUrls = new Uri[8];
-    public static String[] strUrls = new String[8];
-    public static String[] mNames = new String[8];
-    GridView gridView;
-    private static ImageView[] images = null;
-
     /**
      * The {@link ViewPager} that will host the section contents.
      */
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,79 +50,6 @@ public class ImageActivity extends ActionBarActivity {
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-       /* gridView = (GridView) findViewById(R.id.gridView1);
-        // Get images from gallery and add to "images"
-
-        ArrayAdapter<ImageView> adapter = new ArrayAdapter<ImageView>(this, android.R.layout.simple_list_item_1, images);
-        gridView.setAdapter(adapter);
-*/
-        String[] projection = { MediaStore.Images.Media.DATA };
-        String selection = MediaStore.Images.Media.BUCKET_ID + " = ?";
-        String path = Environment.getExternalStorageDirectory().toString() + "/DCIM/Camera";
-        String id = String.valueOf(path.toLowerCase().hashCode());
-        String[] selectionArgs = { id };
-        cc = this.getContentResolver().query(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                projection,
-                selection,
-                selectionArgs,
-                null
-        );
-        cc.moveToFirst();
-        String data = cc.getString(0);
-        Uri example = Uri.parse(data);
-        ImageView image = new ImageView(this);
-        image.setImageURI(example);
-        images = new ImageView[] {image};
-        Uri[] uris = new Uri[] {example};
-        try{
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), example);
-            Bitmap[] bitmaps = new Bitmap[]{bitmap};
-            ArrayAdapter<Bitmap> adapter = new ArrayAdapter<Bitmap>(this, android.R.layout.simple_gallery_item, bitmaps);
-            gridView = (GridView) findViewById(R.id.gridView1);
-            gridView.setAdapter(adapter);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-/*
-        if (cc != null)
-        {
-            try
-            {
-                cc.moveToFirst();
-                for (int i = 0; i > cc.getCount(); i++)
-                {
-                    cc.moveToPosition(i);
-                    mUrls[i] = Uri.parse(cc.getString(1));
-                    strUrls[i] = cc.getString(1);
-                    mNames[i] = cc.getString(3);
-                }
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        ImageView iv = new ImageView(this);
-        try {
-        iv.setImageBitmap(BitmapFactory.decodeStream(getContentResolver().openInputStream(mUrls[0])));
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        //iv.setImageURI(mUrls[0]);
-        images = new ImageView[] {iv};
-
-        gridView = (GridView) findViewById(R.id.gridView1);
-
-        ArrayAdapter<ImageView> adapter = new ArrayAdapter<ImageView>(this, android.R.layout.simple_list_item_1, images);
-        gridView.setAdapter(adapter);
-  */
         Button pickImage = (Button) findViewById(R.id.btn_pick);
         pickImage.setOnClickListener(new View.OnClickListener() {
 
