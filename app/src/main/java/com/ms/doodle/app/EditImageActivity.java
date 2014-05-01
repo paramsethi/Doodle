@@ -2,11 +2,12 @@ package com.ms.doodle.app;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,15 +18,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 
 
 public class EditImageActivity extends ActionBarActivity implements OnClickListener {
     private ImageView imageView;
-
+    Uri imageUri;
     private DrawingView drawView;
     private ImageButton paintButton, drawButton, eraseButton, saveButton;
     private float smallBrush, mediumBrush, largeBrush;
@@ -39,7 +38,7 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
         imageView = (ImageView) findViewById(R.id.editImageView);
         InputStream imageStream = null;
         try {
-            Uri imageUri = (Uri) this.getIntent().getParcelableExtra("data");
+            imageUri = (Uri) this.getIntent().getParcelableExtra("data");
             imageStream = getContentResolver().openInputStream(imageUri);
             //final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
             //imageView.setImageBitmap(selectedImage);
@@ -87,34 +86,26 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
 
     private void onClickForSaveButton() {
         drawView.setDrawingCacheEnabled(true);
-    /*    Bitmap bitmap = drawView.getDrawingCache();
-        String imgSaved = MediaStore.Images.Media.insertImage(this.getBaseContext().getContentResolver(), bitmap, "temp" + ".png", "drawing");
-        Toast toast;
-        if (imgSaved != null) {
-            toast = Toast.makeText(getApplicationContext(), "Image Saved to Gallery!", Toast.LENGTH_SHORT);
-            toast.show();
-            // Navigate to Home Screen.
-        } else {
-            toast = Toast.makeText(getApplicationContext(), "Sorry, Image could not be saved", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        drawView.destroyDrawingCache();
-*/
-        Toast toast;
-        Bitmap bitmap = drawView.getDrawingCache();
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath();
-        File file = new File(path + "image.png");
-        FileOutputStream ostream;
         try {
-            file.createNewFile();
-            ostream = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, ostream);
-            ostream.flush();
-            ostream.close();
-            Toast.makeText(getApplicationContext(), "Image saved", 5000).show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "Sorry, error" + e.toString(), 5000).show();
+            Bitmap bitmap = drawView.getDrawingCache();
+            String imgSaved = MediaStore.Images.Media.insertImage(this.getBaseContext().getContentResolver(), bitmap, "Do_Odle" + System.currentTimeMillis() + ".png", "drawing");
+            Toast toast;
+            Intent i = new Intent(EditImageActivity.this, ImageActivity.class);
+            if (imgSaved != null) {
+                toast = Toast.makeText(getApplicationContext(), "Image Saved to Gallery!", Toast.LENGTH_SHORT);
+                toast.show();
+                // Navigate to Home Screen.
+                i.putExtra("success", true);
+
+            } else {
+                toast = Toast.makeText(getApplicationContext(), "Sorry, Image could not be saved", Toast.LENGTH_SHORT);
+                toast.show();
+                i.putExtra("success", false);
+            }
+            drawView.destroyDrawingCache();
+            startActivity(i);
+        } catch (Exception exp) {
+            exp.printStackTrace();
         }
     }
 

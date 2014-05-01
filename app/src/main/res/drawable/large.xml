@@ -3,6 +3,6 @@
     android:shape="oval">
     <size
         android:height="@dimen/large_brush"
-        android:width="200dp"/>
-    <solid android:color="#FF666666"/>
+        android:width="200dp" />
+    <solid android:color="#FF666666" />
 </shape>
