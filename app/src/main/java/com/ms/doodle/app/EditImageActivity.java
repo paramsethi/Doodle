@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -87,20 +88,23 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
 
     private void onClickForSaveButton() {
         drawView.setDrawingCacheEnabled(true);
-    /*    Bitmap bitmap = drawView.getDrawingCache();
-        String imgSaved = MediaStore.Images.Media.insertImage(this.getBaseContext().getContentResolver(), bitmap, "temp" + ".png", "drawing");
-        Toast toast;
-        if (imgSaved != null) {
-            toast = Toast.makeText(getApplicationContext(), "Image Saved to Gallery!", Toast.LENGTH_SHORT);
-            toast.show();
-            // Navigate to Home Screen.
-        } else {
-            toast = Toast.makeText(getApplicationContext(), "Sorry, Image could not be saved", Toast.LENGTH_SHORT);
-            toast.show();
+        try {
+            Bitmap bitmap = drawView.getDrawingCache();
+            String imgSaved = MediaStore.Images.Media.insertImage(this.getBaseContext().getContentResolver(), bitmap, "temp" + ".png", "drawing");
+            Toast toast;
+            if (imgSaved != null) {
+                toast = Toast.makeText(getApplicationContext(), "Image Saved to Gallery!", Toast.LENGTH_SHORT);
+                toast.show();
+                // Navigate to Home Screen.
+            } else {
+                toast = Toast.makeText(getApplicationContext(), "Sorry, Image could not be saved", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            drawView.destroyDrawingCache();
+        } catch (Exception exp) {
+            exp.printStackTrace();
         }
-        drawView.destroyDrawingCache();
-*/
-        Toast toast;
+     /*   Toast toast;
         Bitmap bitmap = drawView.getDrawingCache();
         String path = Environment.getExternalStorageDirectory().getAbsolutePath();
         File file = new File(path + "image.png");
@@ -115,7 +119,32 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "Sorry, error" + e.toString(), 5000).show();
+        }*/
+       /* File cacheDirectory;
+        Bitmap bitmap = drawView.getDrawingCache();
+        if ( android.os.Environment.getExternalStorageState().equals( android.os.Environment.MEDIA_MOUNTED ))
+            cacheDirectory = new File( android.os.Environment.getExternalStorageDirectory(), "myFolder/" );
+        else
+            cacheDirectory = this.getCacheDir();
+
+        if( !cacheDirectory.exists() )
+            cacheDirectory.mkdirs();
+
+        Toast toast;
+        FileOutputStream ostream;
+        try {
+            File f = new File( cacheDirectory, "my_file.jpg" );
+            f.createNewFile();
+            ostream = new FileOutputStream(f);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, ostream);
+            ostream.flush();
+            ostream.close();
+            Toast.makeText(getApplicationContext(), "Image saved", 5000).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Sorry, error" + e.toString(), 5000).show();
         }
+*/
     }
 
     private void onClickForBrushButton() {
