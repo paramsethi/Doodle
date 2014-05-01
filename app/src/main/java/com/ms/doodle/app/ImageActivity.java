@@ -1,6 +1,7 @@
 package com.ms.doodle.app;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -119,11 +120,15 @@ public class ImageActivity extends ActionBarActivity {
             case CAPTURE_PHOTO:
                 if (resultCode == RESULT_OK) {
                     try {
-
+                        //
                         imageUri = imageReturnedIntent.getData();
+
+                        Bitmap image1 = (Bitmap) imageReturnedIntent.getExtras().get("data");
+                        String imgSaved = MediaStore.Images.Media.insertImage(this.getBaseContext().getContentResolver(), image1, "Do_Odle" + System.currentTimeMillis() + ".png", "drawing");
                        /* final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                         imageView.setImageBitmap(selectedImage);*/
+                        imageUri = Uri.parse(imgSaved);
                         Intent i = new Intent(ImageActivity.this, EditImageActivity.class);
                         i.putExtra("data", imageUri);
                         startActivity(i);
