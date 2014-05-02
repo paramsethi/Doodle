@@ -3,14 +3,12 @@
  * Created by parseth on 5/1/14.
  */
 
-package com.ms.doodle.app;
+package com.ms.doodle.app.utils;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Point;
 import android.view.Display;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;

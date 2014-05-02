@@ -1,8 +1,4 @@
-package com.ms.doodle.app;
-
-/**
- * Created by prgirase on 4/29/14.
- */
+package com.ms.doodle.app.views;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,91 +13,103 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.ms.doodle.app.R;
+
 /**
  * Created by prgirase on 4/23/14.
  */
 
-public class DrawingView extends View {
-
+public class DrawingView extends View
+{
+    // Keeps track of the path of the drawing.
     private Path drawPath;
-    private Paint drawPaint, canvasPaint;
-    private int paintColor = 0xFF660000;
-    private Canvas drawCanvas;
-    private Bitmap canvasBitmap;
-    private float brushSize, lastBrushSize;
-    // Boolean value that specifies whether or not the app is in the erasing mode.
-    private boolean eraseMode = false;
 
-    public DrawingView(Context context, AttributeSet attrSet) {
+    // Keeps track of the color of the brush and canvas.
+    private Paint drawPaint, canvasPaint;
+
+    // Set the default color.
+    private int paintColor = 0xFF660000;
+
+    // The canvas to draw on.
+    private Canvas drawCanvas;
+
+    // Bitmap of the canvas
+    private Bitmap canvasBitmap;
+
+    // Keeping track of the brush size.
+    private float brushSize, lastBrushSize;
+
+    public DrawingView(Context context, AttributeSet attrSet)
+    {
         super(context, attrSet);
         setupDrawing();
     }
 
-    public void setEraseMode(boolean isErasing) {
-        // Set the "eraseMode" according to the user action.
-        eraseMode = isErasing;
+    private void setupDrawing()
+    {
+        /// <summary>
+        /// This is used to setup the initial drawing/editing page.
+        /// </summary>
 
-        // Set the drawPaint to clear mode.
-        if (isErasing) {
-            drawPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        } else {
-            drawPaint.setXfermode(null);
-        }
-    }
-
-    private void setupDrawing() {
         drawPath = new Path();
         drawPaint = new Paint();
 
+        // Set the path to the default color.
         drawPaint.setColor(paintColor);
 
+        // This is to smooth and round edges of the drawing.
         drawPaint.setAntiAlias(true);
-        drawPaint.setStrokeWidth(20);
         drawPaint.setStyle(Paint.Style.STROKE);
         drawPaint.setStrokeJoin(Paint.Join.ROUND);
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
-
         canvasPaint = new Paint(Paint.DITHER_FLAG);
 
-        //brushSize = getResources().getInteger(R.integer.medium_size);
+        // Set the default brush size to medium.
+        brushSize = getResources().getInteger(R.integer.medium_size);
         lastBrushSize = brushSize;
-
         drawPaint.setStrokeWidth(brushSize);
     }
 
-    public void setBrushSize(float newSize) {
+    public void setBrushSize(float newSize)
+    {
         float pixelAmount = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newSize, getResources().getDisplayMetrics());
         brushSize = pixelAmount;
         drawPaint.setStrokeWidth(brushSize);
     }
 
-    public void setLastBrushSize(float lastSize) {
+    public void setLastBrushSize(float lastSize)
+    {
         lastBrushSize = lastSize;
     }
 
-    public float getLastBrushSize() {
+    public float getLastBrushSize()
+    {
         return lastBrushSize;
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    protected void onSizeChanged(int w, int h, int oldw, int oldh)
+    {
         super.onSizeChanged(w, h, oldw, oldh);
         canvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         drawCanvas = new Canvas(canvasBitmap);
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas)
+    {
         canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
         canvas.drawPath(drawPath, drawPaint);
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(MotionEvent event)
+    {
         float touchX = event.getX();
         float touchY = event.getY();
 
-        switch (event.getAction()) {
+        switch (event.getAction())
+        {
             case MotionEvent.ACTION_DOWN:
                 drawPath.moveTo(touchX, touchY);
                 break;
@@ -120,7 +128,8 @@ public class DrawingView extends View {
         return true;
     }
 
-    public void setColor(String newColor) {
+    public void setColor(String newColor)
+    {
         invalidate();
 
         paintColor = Color.parseColor(newColor);

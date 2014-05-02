@@ -1,4 +1,4 @@
-package com.ms.doodle.app;
+package com.ms.doodle.app.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +11,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,6 +21,11 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.ms.doodle.app.adapters.GridViewImageAdapter;
+import com.ms.doodle.app.R;
+import com.ms.doodle.app.utils.AppConstant;
+import com.ms.doodle.app.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Locale;

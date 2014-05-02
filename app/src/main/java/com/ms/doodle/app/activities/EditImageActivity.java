@@ -1,4 +1,4 @@
-package com.ms.doodle.app;
+package com.ms.doodle.app.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -17,6 +17,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.ms.doodle.app.views.DrawingView;
+import com.ms.doodle.app.R;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;

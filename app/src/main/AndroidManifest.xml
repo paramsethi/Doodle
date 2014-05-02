@@ -13,14 +13,14 @@
         android:theme="@style/AppTheme"
         android:debuggable="true">
         <activity
-            android:name="com.ms.doodle.app.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ms.doodle.app.ImageActivity"
+            android:name=".activities.ImageActivity"
             android:label="@string/gallery_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,14 +28,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ms.doodle.app.EditImageActivity"
+            android:name=".activities.EditImageActivity"
             android:label="@string/edit_activity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ms.doodle.app.FullScreenViewActivity"
+            android:name=".activities.FullScreenViewActivity"
             android:theme="@android:style/Theme.Holo.NoActionBar">
         </activity>
     </application>

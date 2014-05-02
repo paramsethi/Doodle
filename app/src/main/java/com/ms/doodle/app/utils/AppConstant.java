@@ -1,4 +1,4 @@
-package com.ms.doodle.app;
+package com.ms.doodle.app.utils;
 
 import java.util.Arrays;
 import java.util.List;

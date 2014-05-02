@@ -1,4 +1,4 @@
-package com.ms.doodle.app;
+package com.ms.doodle.app.adapters;
 
 /**
  * Created by parseth on 5/1/14.
@@ -15,7 +15,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import com.ms.doodle.app.FullScreenViewActivity;
+
+import com.ms.doodle.app.activities.EditImageActivity;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

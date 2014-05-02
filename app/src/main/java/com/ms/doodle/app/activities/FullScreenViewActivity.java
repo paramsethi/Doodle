@@ -1,10 +1,12 @@
-package com.ms.doodle.app;
+package com.ms.doodle.app.activities;
 
 import android.app.Activity;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.ms.doodle.app.R;
 
 public class FullScreenViewActivity extends Activity {
 

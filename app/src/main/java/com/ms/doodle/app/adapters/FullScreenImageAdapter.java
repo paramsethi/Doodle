@@ -1,4 +1,4 @@
-package com.ms.doodle.app;
+package com.ms.doodle.app.adapters;
 
 /**
  * Created by parseth on 5/1/14.
@@ -19,6 +19,8 @@ package com.ms.doodle.app;
         import android.widget.Button;
         import android.widget.ImageView;
         import android.widget.RelativeLayout;
+
+        import com.ms.doodle.app.R;
 
 public class FullScreenImageAdapter extends PagerAdapter {
 

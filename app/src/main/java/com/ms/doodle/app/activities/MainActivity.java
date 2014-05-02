@@ -1,9 +1,11 @@
-package com.ms.doodle.app;
+package com.ms.doodle.app.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.ms.doodle.app.R;
 
 public class MainActivity extends ActionBarActivity {
 

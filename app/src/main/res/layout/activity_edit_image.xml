@@ -6,7 +6,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.ms.doodle.app.EditImageActivity">
+    tools:context="com.ms.doodle.app.activities.EditImageActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 />
         </LinearLayout>
 
-        <com.ms.doodle.app.DrawingView
+        <com.ms.doodle.app.views.DrawingView
             android:id="@+id/drawing"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
