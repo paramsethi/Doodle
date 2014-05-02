@@ -75,11 +75,11 @@ public class GridViewImageAdapter extends BaseAdapter {
 
     class OnImageClickListener implements OnClickListener {
 
-        int _postion;
+        int _position;
 
         // constructor
         public OnImageClickListener(int position) {
-            this._postion = position;
+            this._position = position;
         }
 
         @Override
@@ -87,7 +87,7 @@ public class GridViewImageAdapter extends BaseAdapter {
             // on selecting grid view image
             // launch full screen activity
             Intent i = new Intent(_activity, EditImageActivity.class);
-            i.putExtra("data", Uri.parse(_filePaths.get(_postion)));
+            i.putExtra("data", Uri.fromFile(new File(_filePaths.get(_position))));
             _activity.startActivity(i);
         }
 

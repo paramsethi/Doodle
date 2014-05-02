@@ -7,7 +7,8 @@
     <ImageButton
         android:id="@+id/small"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="50dp"
         android:layout_weight="1"
         android:layout_gravity="center"
         android:contentDescription="@string/small"
@@ -16,7 +17,8 @@
     <ImageButton
         android:id="@+id/medium"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="50dp"
         android:layout_weight="1"
         android:layout_gravity="center"
         android:contentDescription="@string/medium"
@@ -25,7 +27,7 @@
     <ImageButton
         android:id="@+id/large"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
         android:contentDescription="@string/large"

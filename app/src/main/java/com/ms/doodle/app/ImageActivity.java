@@ -93,6 +93,17 @@ public class ImageActivity extends Activity {
             }
         });
 
+        Button createImage = (Button) findViewById(R.id.btn_create);
+        createImage.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view)
+            {
+                Intent i = new Intent(ImageActivity.this, EditImageActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     private void InitilizeGridLayout() {

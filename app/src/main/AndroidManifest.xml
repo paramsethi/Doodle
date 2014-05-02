@@ -21,7 +21,7 @@
         </activity>
         <activity
             android:name="com.ms.doodle.app.ImageActivity"
-            android:label="@string/title_activity_image">
+            android:label="@string/gallery_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -29,7 +29,7 @@
         </activity>
         <activity
             android:name="com.ms.doodle.app.EditImageActivity"
-            android:label="@string/title_activity_edit_image">
+            android:label="@string/edit_activity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
