@@ -1,9 +1,7 @@
 package com.ms.doodle.app.activities;
 
 import android.app.Activity;
-
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ms.doodle.app.R;
@@ -16,7 +14,7 @@ public class FullScreenViewActivity extends Activity {
         setContentView(R.layout.activity_fullscreen_view);
     }
 
-@Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long

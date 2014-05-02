@@ -1,6 +1,7 @@
 package com.ms.doodle.app.activities;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,28 +9,23 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.ms.doodle.app.views.DrawingView;
 import com.ms.doodle.app.R;
+import com.ms.doodle.app.views.DrawingView;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 
-public class EditImageActivity extends ActionBarActivity implements OnClickListener {
-    private ImageView imageView;
+public class EditImageActivity extends Activity implements OnClickListener {
     Uri imageUri;
     private DrawingView drawView;
-    private ImageButton paintButton, drawButton, eraseButton, saveButton, mustacheButton;
+    private ImageButton paintButton, drawButton, saveButton, mustacheButton;
     private float smallBrush, mediumBrush, largeBrush;
 
     @SuppressLint("NewApi")
@@ -38,7 +34,6 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_image);
 
-        imageView = (ImageView) findViewById(R.id.editImageView);
         InputStream imageStream = null;
         try {
             imageUri = (Uri) this.getIntent().getParcelableExtra("uri");
@@ -91,7 +86,7 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
         }
     }
 
-    private void onClickforMustacheButton(){
+    private void onClickforMustacheButton() {
         // Create a dialog of different mustaches.
         final Dialog mustacheDialog = new Dialog(this);
         mustacheDialog.setTitle(getResources().getString(R.string.pick_mustache));
@@ -178,29 +173,8 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
         brushDialog.show();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     public void paintClicked(View view) {
         if (view != paintButton) {
-
 
 
             // Set the brush size to the last known one.
