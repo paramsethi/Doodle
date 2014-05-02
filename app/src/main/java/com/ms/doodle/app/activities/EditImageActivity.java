@@ -29,7 +29,7 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
     private ImageView imageView;
     Uri imageUri;
     private DrawingView drawView;
-    private ImageButton paintButton, drawButton, eraseButton, saveButton;
+    private ImageButton paintButton, drawButton, eraseButton, saveButton, mustacheButton;
     private float smallBrush, mediumBrush, largeBrush;
 
     @SuppressLint("NewApi")
@@ -72,6 +72,9 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
         // save button
         saveButton = (ImageButton) findViewById(R.id.save_btn);
         saveButton.setOnClickListener(this);
+
+        mustacheButton = (ImageButton) findViewById(R.id.mustache);
+        mustacheButton.setOnClickListener(this);
     }
 
     public void onClick(View view) {
@@ -82,7 +85,28 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
             case R.id.save_btn:
                 onClickForSaveButton();
                 break;
+            case R.id.mustache:
+                onClickforMustacheButton();
+                break;
         }
+    }
+
+    private void onClickforMustacheButton(){
+        // Create a dialog of different mustaches.
+        final Dialog mustacheDialog = new Dialog(this);
+        mustacheDialog.setTitle(getResources().getString(R.string.pick_mustache));
+        mustacheDialog.setContentView(R.layout.mustache_chooser);
+
+        ImageButton mustacheChooser = (ImageButton) mustacheDialog.findViewById(R.id.mustache_clipArt);
+        mustacheChooser.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mustacheDialog.dismiss();
+            }
+        });
+
+        mustacheDialog.show();
     }
 
     private void onClickForSaveButton() {

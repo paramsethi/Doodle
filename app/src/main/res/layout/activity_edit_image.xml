@@ -41,6 +41,15 @@
                 android:src="@drawable/save"
                 />
 
+            <ImageButton
+                android:id="@+id/mustache"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:contentDescription="@string/mustache"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/mustache_icon" />
+
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -59,6 +68,8 @@
             android:layout_weight="1"
             android:background="#FFFFFFFF"
             />
+
+
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -18,6 +18,8 @@
     <string name="brush">Brush</string>
     <string name="save">Save</string>
     <string name="paint">Paint</string>
+    <string name="mustache">Mustache</string>
+    <string name="pick_mustache">Pick Mustache</string>
 
     <string name="small">Small</string>
     <string name="medium">Medium</string>

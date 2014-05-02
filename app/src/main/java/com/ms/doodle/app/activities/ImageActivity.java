@@ -1,5 +1,8 @@
 package com.ms.doodle.app.activities;
-
+/**
+ * ImageActivity For showing image gallery
+ *
+ */
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -121,7 +124,7 @@ public class ImageActivity extends Activity
                 {
                     try
                     {
-                        Bitmap image1 = (Bitmap) imageReturnedIntent.getExtras().get("uri");
+                        Bitmap image1 = (Bitmap) imageReturnedIntent.getExtras().get("data");
                         String imgSaved = MediaStore.Images.Media.insertImage(this.getBaseContext().getContentResolver(), image1, "Do_Odle" + System.currentTimeMillis() + ".png", "drawing");
 
                         Intent i = new Intent(ImageActivity.this, EditImageActivity.class);
