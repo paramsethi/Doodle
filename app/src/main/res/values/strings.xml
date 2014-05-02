@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Doodle</string>
+    <string name="app_name">Do_Odle</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_image_picker">ImagePickerActivity</string>
     <string name="title_activity_image">Do_Odle</string>
     <string name="OtherActivity">Other Activity</string>
-    <string name="change_image">Go to Gallery</string>
-    <string name="click_image">Click Image</string>
+    <string name="change_image">Gallery</string>
+    <string name="gallery_activity">Choose Image to Doodle</string>
+    <string name="edit_activity">Doodle on the Image</string>
+    <string name="click_image">Camera</string>
+    <string name="create_image">Create</string>
     <string name="title_activity_edit_image">EditImageActivity</string>
-
-    <string name='editPicture_title'>Doodle on your image</string>
+    <string name="editPicture_title">Doodle on your image</string>
     <string name="brush">Brush</string>
     <string name="save">Save</string>
     <string name="paint">Paint</string>
-
     <string name="small">Small</string>
     <string name="medium">Medium</string>
     <string name="large">Large</string>
+    <string name="title_activity_full_screen_view">FullScreenViewActivity</string>
 
 </resources>

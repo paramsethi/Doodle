@@ -1,6 +1,8 @@
 package com.ms.doodle.app;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,19 +12,26 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
-public class ImageActivity extends ActionBarActivity {
-
+public class ImageActivity extends Activity {
+    private Utils utils;
+    private ArrayList<String> imagePaths = new ArrayList<String>();
+    private GridViewImageAdapter adapter;
+    private GridView gridView;
+    private int columnWidth;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -45,9 +54,22 @@ public class ImageActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        gridView = (GridView) findViewById(R.id.grid_view);
+
+        utils = new Utils(this);
+
+        // Initilizing Grid View
+        InitilizeGridLayout();
+
+        // loading all image paths from SD card
+        imagePaths = utils.getFilePaths();
+
+        // Gridview adapter
+        adapter = new GridViewImageAdapter(ImageActivity.this, imagePaths,
+                columnWidth);
+
+        // setting grid view adapter
+        gridView.setAdapter(adapter);
 
         Button pickImage = (Button) findViewById(R.id.btn_pick);
         pickImage.setOnClickListener(new View.OnClickListener() {
@@ -71,8 +93,34 @@ public class ImageActivity extends ActionBarActivity {
             }
         });
 
+        Button createImage = (Button) findViewById(R.id.btn_create);
+        createImage.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view)
+            {
+                Intent i = new Intent(ImageActivity.this, EditImageActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
+    private void InitilizeGridLayout() {
+        Resources r = getResources();
+        float padding = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                AppConstant.GRID_PADDING, r.getDisplayMetrics());
+
+        columnWidth = (int) ((utils.getScreenWidth() - ((AppConstant.NUM_OF_COLUMNS + 1) * padding)) / AppConstant.NUM_OF_COLUMNS);
+
+        gridView.setNumColumns(AppConstant.NUM_OF_COLUMNS);
+        gridView.setColumnWidth(columnWidth);
+        gridView.setStretchMode(GridView.NO_STRETCH);
+        gridView.setPadding((int) padding, (int) padding, (int) padding,
+                (int) padding);
+        gridView.setHorizontalSpacing((int) padding);
+        gridView.setVerticalSpacing((int) padding);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
