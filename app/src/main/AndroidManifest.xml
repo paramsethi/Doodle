@@ -35,8 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.FullScreenViewActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar">
+            android:name=".activities.FullScreenViewActivity">
         </activity>
     </application>
 

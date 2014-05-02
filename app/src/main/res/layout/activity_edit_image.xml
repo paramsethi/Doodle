@@ -25,6 +25,8 @@
                 android:id="@+id/brush_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
                 android:contentDescription="@string/brush"
                 android:src="@drawable/brush"
                 />
@@ -34,6 +36,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:contentDescription="@string/save"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
                 android:src="@drawable/save"
                 />
 
@@ -129,11 +133,11 @@
                     android:layout_width="@dimen/large_brush"
                     android:layout_height="@dimen/large_brush"
                     android:layout_margin="2dp"
-                    android:background="#FF009900"
+                    android:background="#FF999900"
                     android:contentDescription="@string/paint"
                     android:onClick="paintClicked"
                     android:src="@drawable/paint"
-                    android:tag="#FF009900"
+                    android:tag="#FF999900"
                     />
 
             </LinearLayout>
