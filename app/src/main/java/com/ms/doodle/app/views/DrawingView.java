@@ -105,6 +105,10 @@ public class DrawingView extends View
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
+        /// <summary>
+        /// Register the touch user actions to enable drawing.
+        /// </summary>
+
         float touchX = event.getX();
         float touchY = event.getY();
 

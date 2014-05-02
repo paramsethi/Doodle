@@ -37,6 +37,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:text="@string/change_image"
+                android:textColor="#FFFFFF"
                 android:layout_weight="1"/>
             <Button
                 android:id="@+id/btn_click"
@@ -45,6 +46,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:text="@string/click_image"
+                android:textColor="#FFFFFF"
                 android:layout_weight="1"/>
             <Button
                 android:id="@+id/btn_create"
@@ -53,6 +55,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:text="@string/create_image"
+                android:textColor="#FFFFFF"
                 android:layout_weight="1"/>
         </LinearLayout>
     </LinearLayout>

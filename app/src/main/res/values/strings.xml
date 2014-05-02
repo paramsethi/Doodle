@@ -7,7 +7,7 @@
     <string name="title_activity_image">Do_Odle</string>
 
     <string name="title_activity_edit_image">Do_Odler</string>
-    <string name="gallery_activity">Pick to Do_Odle</string>
+
     <string name="edit_activity">Do_Odler</string>
 
     <string name="click_image">Camera</string>
@@ -23,4 +23,7 @@
     <string name="medium">Medium</string>
     <string name="large">Large</string>
 
+    <string name="imageSaved">Image saved to Gallery!</string>
+    <string name="imageSaveError">Sorry, image could not be saved</string>
+    <string name="brushSizeTitle">Pick Brush Size:</string>
 </resources>

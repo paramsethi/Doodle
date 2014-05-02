@@ -89,7 +89,7 @@ public class GridViewImageAdapter extends BaseAdapter {
             // on selecting grid view image
             // launch full screen activity
             Intent i = new Intent(_activity, EditImageActivity.class);
-            i.putExtra("data", Uri.fromFile(new File(_filePaths.get(_position))));
+            i.putExtra("uri", Uri.fromFile(new File(_filePaths.get(_position))));
             _activity.startActivity(i);
         }
 

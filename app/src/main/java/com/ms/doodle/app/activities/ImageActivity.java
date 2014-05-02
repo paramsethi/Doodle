@@ -10,48 +10,27 @@ import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ms.doodle.app.adapters.GridViewImageAdapter;
 import com.ms.doodle.app.R;
 import com.ms.doodle.app.utils.AppConstant;
 import com.ms.doodle.app.utils.Utils;
-
-import java.util.ArrayList;
 import java.util.Locale;
 
-public class ImageActivity extends Activity {
+public class ImageActivity extends Activity
+{
     private Utils utils;
-    private ArrayList<String> imagePaths = new ArrayList<String>();
-    private GridViewImageAdapter adapter;
     private GridView gridView;
     private int columnWidth;
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    SectionsPagerAdapter mSectionsPagerAdapter;
     private final int SELECT_PHOTO = 1;
     private final int CAPTURE_PHOTO = 0;
-    private ImageView imageView;
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +44,9 @@ public class ImageActivity extends Activity {
         // Initilizing Grid View
         InitilizeGridLayout();
 
-        // loading all image paths from SD card
-        imagePaths = utils.getFilePaths();
-
-        // Gridview adapter
-        adapter = new GridViewImageAdapter(ImageActivity.this, imagePaths,
-                columnWidth);
-
         // setting grid view adapter
-        gridView.setAdapter(adapter);
+        gridView.setAdapter(new GridViewImageAdapter(ImageActivity.this, utils.getFilePaths(),
+                columnWidth));
 
         Button pickImage = (Button) findViewById(R.id.btn_pick);
         pickImage.setOnClickListener(new View.OnClickListener() {
@@ -127,26 +100,6 @@ public class ImageActivity extends Activity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.image, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         Uri imageUri;
@@ -154,12 +107,8 @@ public class ImageActivity extends Activity {
             case SELECT_PHOTO:
                 if (resultCode == RESULT_OK) {
                     try {
-                        imageUri = imageReturnedIntent.getData();
-                       /* final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                        final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                        imageView.setImageBitmap(selectedImage);*/
                         Intent i = new Intent(ImageActivity.this, EditImageActivity.class);
-                        i.putExtra("data", imageUri);
+                        i.putExtra("uri", imageReturnedIntent.getData());
                         startActivity(i);
                     } catch (Exception exp) {
                         exp.printStackTrace();
@@ -168,18 +117,19 @@ public class ImageActivity extends Activity {
                 }
                 break;
             case CAPTURE_PHOTO:
-                if (resultCode == RESULT_OK) {
-                    try {
-                        Bitmap image1 = (Bitmap) imageReturnedIntent.getExtras().get("data");
+                if (resultCode == RESULT_OK)
+                {
+                    try
+                    {
+                        Bitmap image1 = (Bitmap) imageReturnedIntent.getExtras().get("uri");
                         String imgSaved = MediaStore.Images.Media.insertImage(this.getBaseContext().getContentResolver(), image1, "Do_Odle" + System.currentTimeMillis() + ".png", "drawing");
 
-                        final Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        imageUri = Uri.parse(imgSaved);
                         Intent i = new Intent(ImageActivity.this, EditImageActivity.class);
-                        i.putExtra("data", imageUri);
+                        i.putExtra("uri", Uri.parse(imgSaved));
                         startActivity(i);
 
-                    } catch (Exception ex) {
+                    } catch (Exception ex)
+                    {
                         ex.printStackTrace();
                     }
                 }

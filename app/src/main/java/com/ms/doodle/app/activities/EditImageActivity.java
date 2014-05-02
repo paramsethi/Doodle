@@ -41,10 +41,8 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
         imageView = (ImageView) findViewById(R.id.editImageView);
         InputStream imageStream = null;
         try {
-            imageUri = (Uri) this.getIntent().getParcelableExtra("data");
+            imageUri = (Uri) this.getIntent().getParcelableExtra("uri");
             imageStream = getContentResolver().openInputStream(imageUri);
-            //final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-            //imageView.setImageBitmap(selectedImage);
         } catch (FileNotFoundException fex) {
             fex.printStackTrace();
         } catch (Exception ex) {
@@ -95,13 +93,13 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
             Toast toast;
             Intent i = new Intent(EditImageActivity.this, ImageActivity.class);
             if (imgSaved != null) {
-                toast = Toast.makeText(getApplicationContext(), "Image Saved to Gallery!", Toast.LENGTH_SHORT);
+                toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.imageSaved), Toast.LENGTH_SHORT);
                 toast.show();
                 // Navigate to Home Screen.
                 i.putExtra("success", true);
 
             } else {
-                toast = Toast.makeText(getApplicationContext(), "Sorry, Image could not be saved", Toast.LENGTH_SHORT);
+                toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.imageSaveError), Toast.LENGTH_SHORT);
                 toast.show();
                 i.putExtra("success", false);
             }
@@ -115,7 +113,7 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
     private void onClickForBrushButton() {
         // Create a dialog of different brush sizes.
         final Dialog brushDialog = new Dialog(this);
-        brushDialog.setTitle("Brush sizes:");
+        brushDialog.setTitle(getResources().getString(R.string.brushSizeTitle));
 
         // Brush dialog associates with Brush Chooser which is another layout to choose sizes.
         brushDialog.setContentView(R.layout.brush_chooser);
@@ -124,7 +122,7 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
         smallButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawView.setEraseMode(false);
+
                 drawView.setBrushSize(smallBrush);
                 drawView.setLastBrushSize(smallBrush);
                 brushDialog.dismiss();
@@ -135,7 +133,7 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
         mediumButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawView.setEraseMode(false);
+
                 drawView.setBrushSize(mediumBrush);
                 drawView.setLastBrushSize(mediumBrush);
                 brushDialog.dismiss();
@@ -146,7 +144,7 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
         largeButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawView.setEraseMode(false);
+
                 drawView.setBrushSize(largeBrush);
                 drawView.setLastBrushSize(largeBrush);
                 brushDialog.dismiss();
@@ -178,8 +176,8 @@ public class EditImageActivity extends ActionBarActivity implements OnClickListe
 
     public void paintClicked(View view) {
         if (view != paintButton) {
-            // Get rid of the erase mode.
-            drawView.setEraseMode(false);
+
+
 
             // Set the brush size to the last known one.
             drawView.setBrushSize(drawView.getLastBrushSize());
