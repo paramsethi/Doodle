@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Do_Odle</string>
+    <string name="action_settings">настройки</string>
+    <string name="title_activity_image_picker">Выберите изображение</string>
+    <string name="title_activity_image">Do_Odle</string>
+    <string name="change_image">В галерею</string>
+    <string name="click_image">Нажмите на изображение</string>
+    <string name="title_activity_edit_image">Do_Odler</string>
+
+    <string name='editPicture_title'>Do_Odle на изображении</string>
+    <string name="brush">щетка</string>
+    <string name="save">экономить</string>
+    <string name="paint">краска</string>
+
+    <string name="small">небольшой</string>
+    <string name="medium">среда</string>
+    <string name="large">большой</string>
+
+</resources>

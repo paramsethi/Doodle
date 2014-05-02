@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Do_Odle</string>
+    <string name="action_settings">impostazioni</string>
+    <string name="title_activity_image_picker">Scegli un\'immagine</string>
+    <string name="title_activity_image">Do_Odle</string>
+    <string name="change_image">Vai alla Galleria</string>
+    <string name="click_image">Clicca l\'immagine</string>
+    <string name="title_activity_edit_image">Do_Odler</string>
+
+    <string name='editPicture_title'>Do_Odle sulla vostra immagine</string>
+    <string name="brush">spazzola</string>
+    <string name="save">salvare</string>
+    <string name="paint">dipingere</string>
+
+    <string name="small">piccolo</string>
+    <string name="medium">medio</string>
+    <string name="large">grande</string>
+
+</resources>
