@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Doodle</string>
+    <string name="app_name">Do_Odle</string>
     <string name="action_settings">Paramètres</string>
-    <string name="title_activity_image_picker">L\'image Choose de juin</string>
+    <string name="title_activity_image_picker">Choisissez l\'image</string>
     <string name="title_activity_image">Do_Odle</string>
-    <string name="change_image">Aller à la galerie</string>
-    <string name="click_image">Cliquez sur l\'image</string>
-    <string name="title_activity_edit_image">Do_Odler</string>
 
-    <string name='editPicture_title'>Do_Odle à votre image</string>
+    <string name="title_activity_edit_image">Do_Odler</string>
+    <string name="gallery_activity">Choisissez à Do_Odle</string>
+    <string name="edit_activity">Do_Odler</string>
+
+    <string name="click_image">appareil photo</string>
+    <string name="change_image">galerie</string>
+    <string name="create_image">créer</string>
+
+    <string name='editPicture_title'>Do_Odle sur votre image</string>
+
     <string name="brush">brosse</string>
     <string name="save">sauver</string>
     <string name="paint">peindre</string>

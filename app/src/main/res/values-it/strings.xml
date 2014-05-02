@@ -2,14 +2,20 @@
 <resources>
 
     <string name="app_name">Do_Odle</string>
-    <string name="action_settings">impostazioni</string>
-    <string name="title_activity_image_picker">Scegli un\'immagine</string>
+    <string name="action_settings">Impostazioni</string>
+    <string name="title_activity_image_picker">Scegliere Immagine</string>
     <string name="title_activity_image">Do_Odle</string>
-    <string name="change_image">Vai alla Galleria</string>
-    <string name="click_image">Clicca l\'immagine</string>
+
     <string name="title_activity_edit_image">Do_Odler</string>
+    <string name="gallery_activity">Scegli a Do_Odle</string>
+    <string name="edit_activity">Do_Odler</string>
+
+    <string name="click_image">Telecamera</string>
+    <string name="change_image">Galleria</string>
+    <string name="create_image">Creare</string>
 
     <string name='editPicture_title'>Do_Odle sulla vostra immagine</string>
+
     <string name="brush">spazzola</string>
     <string name="save">salvare</string>
     <string name="paint">dipingere</string>
